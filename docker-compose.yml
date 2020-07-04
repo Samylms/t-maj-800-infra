@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  back:
+    container_name: back
+    build:
+      context: t-maj-800-back/
+    restart: always
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongo
+  mongo:
+    container_name: db
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=t-maj-api
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  front:
+    container_name: front
+    tty: true
+    build:
+      context: t-maj-800-front/
+    restart: always
+    environment:
+      - BACK_HOST=back
+      - BACK_PORT=8000
+    ports:
+      - 3000:3000
+    depends_on:
+      - back
