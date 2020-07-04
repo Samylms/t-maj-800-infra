@@ -4,7 +4,12 @@ This repository contains the infrastructure required to deploy the whole system.
 
 ## Building
 
-First, make sure to clone the submodules: `git submodule update --init`.
+First, make sure to clone and update the submodules:
+
+```
+git submodule update --init
+git submodule update --remote
+```
 
 Then, because we use Docker, building all the components is as easy as: `docker-compose build`.
 
