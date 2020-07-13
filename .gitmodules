@@ -4,3 +4,6 @@
 [submodule "t-maj-800-front"]
 	path = t-maj-800-front
 	url = https://github.com/samylms/t-maj-800-front.git
+[submodule "t-maj-800-ia"]
+	path = t-maj-800-ia
+	url = https://github.com/Samylms/t-maj-800-ia.git

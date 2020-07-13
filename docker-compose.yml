@@ -22,6 +22,13 @@ services:
       - 27017:27017
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  ai:
+    container_name: ai
+    build:
+      context: t-maj-800-ia/
+    restart: always
+    ports:
+      - 5000:5000
   front:
     container_name: front
     tty: true
@@ -31,7 +38,10 @@ services:
     environment:
       - BACK_HOST=back
       - BACK_PORT=8000
+      - AI_HOST=ai
+      - AI_PORT=5000
     ports:
       - 3000:3000
     depends_on:
       - back
+      - ai
